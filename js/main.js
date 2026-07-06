@@ -28,7 +28,6 @@ document.addEventListener("DOMContentLoaded", () => {
   initRevealAnimations();
   initWhatsappLinks();
   wireInstagramLinks();
-  initWhatsappTooltip();
 
   // Estas funciones sólo actúan si encuentran los contenedores correspondientes
   renderDevelopmentCards();
@@ -91,27 +90,6 @@ function initWhatsappLinks(){
     el.setAttribute("target", "_blank");
     el.setAttribute("rel", "noopener");
   });
-}
-
-/* ---------- Burbuja de mensaje del botón flotante de WhatsApp ---------- */
-function initWhatsappTooltip(){
-  const tooltip = document.querySelector("[data-wsp-tooltip]");
-  const floatBtn = document.querySelector(".wsp-float");
-  const closeBtn = document.querySelector("[data-wsp-tooltip-close]");
-  if(!tooltip || !floatBtn) return;
-
-  let dismissed = false;
-  const show = () => { if(!dismissed) tooltip.classList.add("is-visible"); };
-  const hide = () => tooltip.classList.remove("is-visible");
-
-  setTimeout(show, 2200);
-
-  floatBtn.addEventListener("click", (e) => {
-    if(tooltip.classList.contains("is-visible")) return; // deja que el link de WhatsApp funcione
-  });
-  if(closeBtn){
-    closeBtn.addEventListener("click", () => { dismissed = true; hide(); });
-  }
 }
 
 function wireInstagramLinks(){
