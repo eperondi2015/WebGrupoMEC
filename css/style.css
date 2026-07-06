@@ -647,7 +647,7 @@ h1,h2,h3,h4{
 
 .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
 .gallery > div{aspect-ratio:1/1;border-radius:var(--radius-sm);}
-.gallery > div:first-child{grid-column:span 2;grid-row:span 2;aspect-ratio:auto;}
+.gallery > div:first-child{grid-column:span 2;aspect-ratio:16/9;}
 
 .masterplan-box{
   background:var(--beige-100);
@@ -753,7 +753,7 @@ h1,h2,h3,h4{
   .menu-toggle{display:flex;}
   .section{padding:80px 0;}
   .gallery{grid-template-columns:repeat(2,1fr);}
-  .gallery > div:first-child{grid-column:span 2;grid-row:auto;aspect-ratio:16/10;}
+  .gallery > div:first-child{grid-column:span 2;aspect-ratio:16/10;}
   .form-row{grid-template-columns:1fr;}
   .footer .container{grid-template-columns:1fr;}
 
