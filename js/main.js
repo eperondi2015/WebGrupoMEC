@@ -55,14 +55,25 @@ function initMobileMenu(){
   const toggle = document.querySelector(".menu-toggle");
   const nav = document.querySelector(".nav-mobile");
   if(!toggle || !nav) return;
+
+  const lockBody = () => {
+    document.documentElement.style.overflow = "hidden";
+    document.body.style.overflow = "hidden";
+  };
+  const unlockBody = () => {
+    document.documentElement.style.overflow = "";
+    document.body.style.overflow = "";
+  };
+
   toggle.addEventListener("click", () => {
+    const willOpen = !nav.classList.contains("is-open");
     nav.classList.toggle("is-open");
-    document.body.style.overflow = nav.classList.contains("is-open") ? "hidden" : "";
+    willOpen ? lockBody() : unlockBody();
   });
   nav.querySelectorAll("a").forEach(link => {
     link.addEventListener("click", () => {
       nav.classList.remove("is-open");
-      document.body.style.overflow = "";
+      unlockBody();
     });
   });
 }
@@ -143,11 +154,9 @@ function renderDevelopmentDetail(){
   if(metaDesc) metaDesc.setAttribute("content", dev.shortDescription);
 
   const facts = dev.quickFacts || [dev.lots, dev.surface, dev.location];
-  const heroMedia = mediaFor(dev.image);
 
   root.innerHTML = `
     <section class="dev-hero">
-      <div class="dev-hero__bg ${heroMedia.cls}" style="${heroMedia.style}"></div>
       <div class="container dev-hero__content">
         <a href="index.html#barrios" class="back-link">
           <svg viewBox="0 0 24 24" fill="none"><path d="M19 12H5M11 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
