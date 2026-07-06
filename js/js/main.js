@@ -213,15 +213,11 @@ function renderDevelopmentDetail(){
             }).join("")}
           </div>
 
-          ${dev.hasMasterplan !== false ? `
           <h2>Masterplan</h2>
-          <button class="masterplan-box" type="button" data-open-masterplan aria-haspopup="dialog" style="background-image:url('${dev.masterplanImage || dev.image}');">
-            <span class="masterplan-box__overlay">
-              <svg viewBox="0 0 24 24" fill="none"><path d="M3 6l6-2 6 2 6-2v14l-6 2-6-2-6 2V6z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 4v14M15 6v14" stroke="currentColor" stroke-width="1.6"/></svg>
-              <p>Ver plano general del barrio<br><span style="font-size:.82rem">Click para ampliar</span></p>
-            </span>
+          <button class="masterplan-box" type="button" data-open-masterplan aria-haspopup="dialog">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M3 6l6-2 6 2 6-2v14l-6 2-6-2-6 2V6z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 4v14M15 6v14" stroke="currentColor" stroke-width="1.6"/></svg>
+            <p>Ver plano general del barrio<br><span style="font-size:.82rem">Click para ampliar</span></p>
           </button>
-          ` : ""}
 
           <h2>Ubicación</h2>
           <div class="map-embed">
@@ -253,7 +249,7 @@ function renderDevelopmentDetail(){
       <button class="lightbox__close" type="button" data-close-masterplan aria-label="Cerrar">
         <svg viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
       </button>
-      <img class="lightbox__content" src="${dev.masterplanImage || dev.image}" alt="Masterplan de ${dev.name}">
+      <div class="lightbox__content ph ${dev.image}" role="img" aria-label="Masterplan de ${dev.name}"></div>
     </div>
   `;
 
