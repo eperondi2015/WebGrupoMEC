@@ -411,7 +411,9 @@ h1,h2,h3,h4{
 }
 .about__media{
   position:relative;
-  aspect-ratio:3/4;
+  aspect-ratio:853/1844;
+  max-width:340px;
+  margin:0 auto;
   border-radius:999px 999px var(--radius-sm) var(--radius-sm);
   overflow:hidden;
   box-shadow:0 30px 60px rgba(38,34,31,.12);
