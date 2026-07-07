@@ -158,10 +158,6 @@ function renderDevelopmentDetail(){
   root.innerHTML = `
     <section class="dev-hero">
       <div class="container dev-hero__content">
-        <a href="index.html#barrios" class="back-link">
-          <svg viewBox="0 0 24 24" fill="none"><path d="M19 12H5M11 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          Volver a barrios y productos
-        </a>
         <nav class="breadcrumb" aria-label="Ruta de navegación">
           <a href="index.html">Inicio</a>
           <span>/</span>
@@ -213,11 +209,32 @@ function renderDevelopmentDetail(){
             }).join("")}
           </div>
 
+          ${dev.hasMasterplan !== false ? `
           <h2>Masterplan</h2>
-          <button class="masterplan-box" type="button" data-open-masterplan aria-haspopup="dialog">
-            <svg viewBox="0 0 24 24" fill="none"><path d="M3 6l6-2 6 2 6-2v14l-6 2-6-2-6 2V6z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 4v14M15 6v14" stroke="currentColor" stroke-width="1.6"/></svg>
-            <p>Ver plano general del barrio<br><span style="font-size:.82rem">Click para ampliar</span></p>
+          <button class="masterplan-box" type="button" data-open-masterplan aria-haspopup="dialog" style="background-image:url('${dev.masterplanImage || dev.image}');">
+            <span class="masterplan-box__overlay">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M3 6l6-2 6 2 6-2v14l-6 2-6-2-6 2V6z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 4v14M15 6v14" stroke="currentColor" stroke-width="1.6"/></svg>
+              <p>Ver plano general del barrio<br><span style="font-size:.82rem">Click para ampliar</span></p>
+            </span>
           </button>
+          ` : ""}
+
+          ${(dev.virtualTourUrl || dev.interactiveMapUrl) ? `
+          <div class="dev-extra-links">
+            ${dev.virtualTourUrl ? `
+            <a class="dev-extra-link" href="${dev.virtualTourUrl}" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="none"><ellipse cx="12" cy="12" rx="10" ry="5" stroke="currentColor" stroke-width="1.6"/><ellipse cx="12" cy="12" rx="4" ry="5" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="1.6" fill="currentColor"/></svg>
+              Recorrido Virtual
+            </a>
+            ` : ""}
+            ${dev.interactiveMapUrl ? `
+            <a class="dev-extra-link" href="${dev.interactiveMapUrl}" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M12 21s-7-6.2-7-11a7 7 0 1114 0c0 4.8-7 11-7 11z" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="10" r="2.5" stroke="currentColor" stroke-width="1.6"/></svg>
+              Mapa Interactivo
+            </a>
+            ` : ""}
+          </div>
+          ` : ""}
 
           <h2>Ubicación</h2>
           <div class="map-embed">
@@ -249,7 +266,7 @@ function renderDevelopmentDetail(){
       <button class="lightbox__close" type="button" data-close-masterplan aria-label="Cerrar">
         <svg viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
       </button>
-      <div class="lightbox__content ph ${dev.image}" role="img" aria-label="Masterplan de ${dev.name}"></div>
+      <img class="lightbox__content" src="${dev.masterplanImage || dev.image}" alt="Masterplan de ${dev.name}">
     </div>
   `;
 

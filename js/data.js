@@ -31,6 +31,7 @@ const DEVELOPMENTS = [
     quickFacts: ["De 300 a 425 m²", "Zárate", "Financiación en dólares"],
     mapQuery: "-34.0414973,-59.206031",
     masterplanImage: "images/masterplanes/la-limena.jpg",
+    virtualTourUrl: "https://datastudio.google.com/u/0/reporting/48ba360b-8c64-4c19-b94c-e8a176554761/page/kd9TF",
   },
   {
     id: "santa-teresita",
@@ -57,6 +58,8 @@ const DEVELOPMENTS = [
     quickFacts: ["De 200 a 290 m²", "Zárate", "Financiación en dólares"],
     mapQuery: "-34.0879837,-59.0517466",
     masterplanImage: "images/masterplanes/santa-teresita.jpg",
+    virtualTourUrl: "https://datastudio.google.com/u/0/reporting/d932d114-079f-4cec-9a7e-9c3e9cbd7a83/page/p_49orv5s14d",
+    interactiveMapUrl: "https://eperondi2015.github.io/Tablero-Santa-Teresita/Mapa_Clientes_Santa_Teresita.html",
   },
   {
     id: "atardeceres-de-matheu",

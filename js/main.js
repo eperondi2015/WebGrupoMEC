@@ -158,10 +158,6 @@ function renderDevelopmentDetail(){
   root.innerHTML = `
     <section class="dev-hero">
       <div class="container dev-hero__content">
-        <a href="index.html#barrios" class="back-link">
-          <svg viewBox="0 0 24 24" fill="none"><path d="M19 12H5M11 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          Volver a barrios y productos
-        </a>
         <nav class="breadcrumb" aria-label="Ruta de navegación">
           <a href="index.html">Inicio</a>
           <span>/</span>
@@ -221,6 +217,23 @@ function renderDevelopmentDetail(){
               <p>Ver plano general del barrio<br><span style="font-size:.82rem">Click para ampliar</span></p>
             </span>
           </button>
+          ` : ""}
+
+          ${(dev.virtualTourUrl || dev.interactiveMapUrl) ? `
+          <div class="dev-extra-links">
+            ${dev.virtualTourUrl ? `
+            <a class="dev-extra-link" href="${dev.virtualTourUrl}" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="none"><ellipse cx="12" cy="12" rx="10" ry="5" stroke="currentColor" stroke-width="1.6"/><ellipse cx="12" cy="12" rx="4" ry="5" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="1.6" fill="currentColor"/></svg>
+              Recorrido Virtual
+            </a>
+            ` : ""}
+            ${dev.interactiveMapUrl ? `
+            <a class="dev-extra-link" href="${dev.interactiveMapUrl}" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M12 21s-7-6.2-7-11a7 7 0 1114 0c0 4.8-7 11-7 11z" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="10" r="2.5" stroke="currentColor" stroke-width="1.6"/></svg>
+              Mapa Interactivo
+            </a>
+            ` : ""}
+          </div>
           ` : ""}
 
           <h2>Ubicación</h2>
