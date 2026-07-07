@@ -280,6 +280,17 @@ const DEVELOPMENTS = [
     quickFacts: ["Banco de tierras", "Corredor norte", "Desde 2 hectáreas"],
     mapQuery: "Buenos Aires, Argentina",
     hasMasterplan: false,
+    hasGallery: false,
+    landBankPoints: [
+      { name: "Exaltación de la Cruz", detail: "183 hectáreas", lat: -34.3556944, lng: -59.0543333 },
+      { name: "Escobar", detail: "100 hectáreas", lat: -34.3040278, lng: -58.8002778 },
+      { name: "Los Cardales", detail: "74 hectáreas", lat: -34.283822654592704, lng: -58.92041921534119 },
+      { name: "Lima", detail: "18 hectáreas", lat: -34.0486667, lng: -59.2051111 },
+      { name: "Pilar — Parcelas desde 2 ha", detail: "Ideales para townhouses y condominios", lat: -34.42241764959923, lng: -58.8868412865059 },
+      { name: "Pilar — Fracción con laguna", detail: "13 hectáreas", lat: -34.4312778, lng: -58.9435556 },
+      { name: "Zárate", detail: "Predio de 2 hectáreas sobre Ruta Provincial 6", lat: -34.1272778, lng: -59.0139167 },
+      { name: "Escobar — Zona Puertos", detail: "Macrolotes comerciales", lat: -34.3280278, lng: -58.7393889 }
+    ],
   },
   {
     id: "inversiones-pool-de-rentas",

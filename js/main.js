@@ -201,6 +201,7 @@ function renderDevelopmentDetail(){
               </li>`).join("")}
           </ul>
 
+          ${dev.hasGallery !== false ? `
           <h2>Galería</h2>
           <div class="gallery">
             ${dev.images.map(img => {
@@ -208,6 +209,7 @@ function renderDevelopmentDetail(){
               return `<div class="${m.cls}" style="${m.style}" role="img" aria-label="Fotografía de ${dev.name}"></div>`;
             }).join("")}
           </div>
+          ` : ""}
 
           ${dev.hasMasterplan !== false ? `
           <h2>Masterplan</h2>
@@ -236,6 +238,20 @@ function renderDevelopmentDetail(){
           </div>
           ` : ""}
 
+          ${dev.landBankPoints ? `
+          <h2>Ubicaciones del banco de tierras</h2>
+          <div class="landbank">
+            <div id="landbank-map" class="landbank__map" role="application" aria-label="Mapa interactivo de ubicaciones"></div>
+            <div class="landbank__list">
+              ${dev.landBankPoints.map((p, i) => `
+              <button class="landbank__item" type="button" data-lat="${p.lat}" data-lng="${p.lng}" data-idx="${i}">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M12 21s-7-6.2-7-11a7 7 0 1114 0c0 4.8-7 11-7 11z" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="10" r="2.5" stroke="currentColor" stroke-width="1.6"/></svg>
+                <span><strong>${p.name}</strong><small>${p.detail}</small></span>
+              </button>
+              `).join("")}
+            </div>
+          </div>
+          ` : `
           <h2>Ubicación</h2>
           <div class="map-embed">
             <iframe
@@ -246,6 +262,7 @@ function renderDevelopmentDetail(){
               allowfullscreen>
             </iframe>
           </div>
+          `}
         </div>
 
         <aside class="dev-sidebar">
@@ -274,7 +291,58 @@ function renderDevelopmentDetail(){
   initWhatsappLinks();
   initRevealAnimations();
   initMasterplanLightbox(root);
+  initLandBankMap(dev);
   renderRelated(dev.id);
+}
+
+/* ---------- Mapa interactivo del banco de tierras (Macrolotes) ---------- */
+function initLandBankMap(dev){
+  const mapEl = document.getElementById("landbank-map");
+  if(!mapEl || !dev.landBankPoints || typeof L === "undefined") return;
+
+  const map = L.map("landbank-map", { scrollWheelZoom: false });
+
+  const satellite = L.tileLayer(
+    "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+    { maxZoom: 18, attribution: "Tiles &copy; Esri" }
+  ).addTo(map);
+
+  L.tileLayer(
+    "https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}",
+    { maxZoom: 18, attribution: "" }
+  ).addTo(map);
+
+  const bordoIcon = L.divIcon({
+    className: "landbank-pin",
+    html: `<svg viewBox="0 0 24 24" width="34" height="34" fill="#7C2D42" stroke="#fff" stroke-width="1"><path d="M12 2C7 2 3 6 3 11c0 6.5 9 11 9 11s9-4.5 9-11c0-5-4-9-9-9z"/><circle cx="12" cy="11" r="3.2" fill="#fff"/></svg>`,
+    iconSize: [34, 34],
+    iconAnchor: [17, 32],
+  });
+
+  const markers = dev.landBankPoints.map(p => {
+    const m = L.marker([p.lat, p.lng], { icon: bordoIcon }).addTo(map);
+    m.bindPopup(`<strong>${p.name}</strong><br>${p.detail}`);
+    return m;
+  });
+
+  const group = L.featureGroup(markers);
+  map.fitBounds(group.getBounds().pad(0.25));
+
+  document.querySelectorAll(".landbank__item").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const lat = parseFloat(btn.dataset.lat);
+      const lng = parseFloat(btn.dataset.lng);
+      const idx = parseInt(btn.dataset.idx, 10);
+      map.flyTo([lat, lng], 15, { duration: 1.1 });
+      markers[idx].openPopup();
+      document.querySelectorAll(".landbank__item").forEach(b => b.classList.remove("is-active"));
+      btn.classList.add("is-active");
+    });
+  });
+
+  // Habilita zoom con rueda del mouse sólo cuando el usuario interactúa con el mapa
+  mapEl.addEventListener("mouseenter", () => map.scrollWheelZoom.enable());
+  mapEl.addEventListener("mouseleave", () => map.scrollWheelZoom.disable());
 }
 
 /* ---------- Lightbox del masterplan ---------- */
