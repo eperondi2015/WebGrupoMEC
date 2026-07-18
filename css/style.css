@@ -550,9 +550,48 @@ h1,h2,h3,h4{
   box-shadow:0 12px 30px rgba(37,211,102,.4);
   transition:transform .35s var(--ease);
   flex:none;
+  border:none;cursor:pointer;font:inherit;
 }
 .wsp-float:hover{transform:scale(1.08);}
 .wsp-float svg{width:28px;height:28px;}
+
+/* Selector de agente (María / Paula) */
+.wsp-picker-wrap{display:inline-block;}
+.header__actions .wsp-picker-wrap,
+.hero__actions .wsp-picker-wrap,
+.dev-sidebar .wsp-picker-wrap{position:relative;}
+.wsp-picker-wrap--sidebar{width:100%;}
+.wsp-picker-wrap--sidebar .btn--wsp{width:100%;}
+.wsp-picker{
+  position:absolute;
+  top:calc(100% + 10px);
+  right:0;
+  max-width:calc(100vw - 40px);
+  background:#fff;
+  border-radius:var(--radius-sm);
+  box-shadow:0 20px 45px rgba(38,34,31,.18);
+  padding:8px;
+  min-width:220px;
+  display:flex;flex-direction:column;gap:2px;
+  opacity:0;visibility:hidden;
+  transform:translateY(-8px);
+  transition:opacity .25s var(--ease), transform .25s var(--ease), visibility .25s;
+  z-index:500;
+}
+.wsp-picker--float{top:auto;bottom:calc(100% + 12px);}
+.wsp-picker-wrap.is-open .wsp-picker{opacity:1;visibility:visible;transform:translateY(0);}
+.wsp-picker a{
+  display:flex;align-items:center;gap:10px;
+  padding:11px 12px;border-radius:6px;
+  font-size:.88rem;font-weight:500;
+  color:var(--gray-900);
+  transition:background .2s;
+  white-space:nowrap;
+}
+.wsp-picker a:hover{background:var(--beige-100);}
+.wsp-picker a svg{width:17px;height:17px;color:#25D366;flex:none;}
+
+button.btn--wsp,button.btn--ghost,button.btn--outline{cursor:pointer;font-family:inherit;}
 
 .wsp-tooltip{
   position:relative;

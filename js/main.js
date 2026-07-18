@@ -3,7 +3,8 @@
    JavaScript puro, sin dependencias externas.
    ============================================================ */
 
-const WHATSAPP_NUMBER = "5491126468166"; // +54 9 11 2646-8166
+const WHATSAPP_NUMBER = "5491126468166"; // María — +54 9 11 2646-8166
+const WHATSAPP_PAULA = "5491125501841"; // Paula — +54 9 11 2550-1841
 const INSTAGRAM_URL = "https://www.instagram.com/grupomecpropiedades?igsh=em94OXFvNGx0M3hm";
 
 /* Devuelve class + estilo inline para un valor de imagen:
@@ -17,9 +18,9 @@ function mediaFor(value){
   return { cls: "media-fill", style: `background-image:url('${value}');background-size:cover;background-position:center;` };
 }
 
-function whatsappLink(message){
+function whatsappLink(message, number){
   const text = encodeURIComponent(message || "Hola, quiero recibir información de Grupo MEC Propiedades.");
-  return `https://wa.me/${WHATSAPP_NUMBER}?text=${text}`;
+  return `https://wa.me/${number || WHATSAPP_NUMBER}?text=${text}`;
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -27,6 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initMobileMenu();
   initRevealAnimations();
   initWhatsappLinks();
+  initWhatsappPicker();
   wireInstagramLinks();
 
   // Estas funciones sólo actúan si encuentran los contenedores correspondientes
@@ -34,6 +36,31 @@ document.addEventListener("DOMContentLoaded", () => {
   renderDevelopmentDetail();
   initContactForm();
 });
+
+/* ---------- Selector de agente (María / Paula) para los botones de WhatsApp ---------- */
+function initWhatsappPicker(){
+  document.querySelectorAll("[data-wsp-toggle]").forEach(toggle => {
+    if(toggle.dataset.wspBound) return;
+    toggle.dataset.wspBound = "1";
+    toggle.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      const wrap = toggle.closest(".wsp-picker-wrap");
+      if(!wrap) return;
+      const wasOpen = wrap.classList.contains("is-open");
+      document.querySelectorAll(".wsp-picker-wrap.is-open").forEach(w => w.classList.remove("is-open"));
+      if(!wasOpen) wrap.classList.add("is-open");
+    });
+  });
+  if(!document.body.dataset.wspOutsideBound){
+    document.body.dataset.wspOutsideBound = "1";
+    document.addEventListener("click", (e) => {
+      if(!e.target.closest(".wsp-picker-wrap")){
+        document.querySelectorAll(".wsp-picker-wrap.is-open").forEach(w => w.classList.remove("is-open"));
+      }
+    });
+  }
+}
 
 /* ---------- Header: reducción suave al hacer scroll ---------- */
 function initHeader(){
@@ -97,7 +124,9 @@ function initRevealAnimations(){
 function initWhatsappLinks(){
   document.querySelectorAll("[data-wsp]").forEach(el => {
     const msg = el.getAttribute("data-wsp") || undefined;
-    el.setAttribute("href", whatsappLink(msg));
+    const agent = el.getAttribute("data-wsp-agent");
+    const number = agent === "paula" ? WHATSAPP_PAULA : WHATSAPP_NUMBER;
+    el.setAttribute("href", whatsappLink(msg, number));
     el.setAttribute("target", "_blank");
     el.setAttribute("rel", "noopener");
   });
@@ -267,10 +296,29 @@ function renderDevelopmentDetail(){
 
         <aside class="dev-sidebar">
           <h3>${dev.name}</h3>
-          <a class="btn btn--wsp" data-wsp="Hola, quiero más información sobre ${dev.name}." href="#">
+          ${dev.whatsappOverride === "paula" ? `
+          <a class="btn btn--wsp" data-wsp="Hola, quiero más información sobre ${dev.name}." data-wsp-agent="paula" href="#">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 00-8.6 15L2 22l5.2-1.4A10 10 0 1012 2zm5.7 14.3c-.2.7-1.4 1.3-2 1.4-.5.1-1.1.1-1.8-.1-.4-.1-1-.3-1.7-.6-3-1.3-4.9-4.3-5.1-4.5-.1-.2-1.2-1.6-1.2-3 0-1.4.7-2.1 1-2.4.3-.3.6-.3.8-.3h.6c.2 0 .4 0 .6.5.2.5.8 1.9.8 2 .1.2.1.3 0 .5-.1.2-.2.3-.3.5l-.5.5c-.2.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.2 1.4 2.5 1.5.3.1.4.1.6-.1l.8-.9c.2-.3.4-.2.7-.1l1.8.9c.2.1.4.2.5.3.1.2.1.9-.1 1.6z"/></svg>
             Consultar por WhatsApp
           </a>
+          ` : `
+          <div class="wsp-picker-wrap wsp-picker-wrap--sidebar">
+            <button class="btn btn--wsp" type="button" data-wsp-toggle>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 00-8.6 15L2 22l5.2-1.4A10 10 0 1012 2zm5.7 14.3c-.2.7-1.4 1.3-2 1.4-.5.1-1.1.1-1.8-.1-.4-.1-1-.3-1.7-.6-3-1.3-4.9-4.3-5.1-4.5-.1-.2-1.2-1.6-1.2-3 0-1.4.7-2.1 1-2.4.3-.3.6-.3.8-.3h.6c.2 0 .4 0 .6.5.2.5.8 1.9.8 2 .1.2.1.3 0 .5-.1.2-.2.3-.3.5l-.5.5c-.2.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.2 1.4 2.5 1.5.3.1.4.1.6-.1l.8-.9c.2-.3.4-.2.7-.1l1.8.9c.2.1.4.2.5.3.1.2.1.9-.1 1.6z"/></svg>
+              Consultar por WhatsApp
+            </button>
+            <div class="wsp-picker">
+              <a href="#" data-wsp="Hola, quiero más información sobre ${dev.name}." data-wsp-agent="maria">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 00-8.6 15L2 22l5.2-1.4A10 10 0 1012 2zm5.7 14.3c-.2.7-1.4 1.3-2 1.4-.5.1-1.1.1-1.8-.1-.4-.1-1-.3-1.7-.6-3-1.3-4.9-4.3-5.1-4.5-.1-.2-1.2-1.6-1.2-3 0-1.4.7-2.1 1-2.4.3-.3.6-.3.8-.3h.6c.2 0 .4 0 .6.5.2.5.8 1.9.8 2 .1.2.1.3 0 .5-.1.2-.2.3-.3.5l-.5.5c-.2.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.2 1.4 2.5 1.5.3.1.4.1.6-.1l.8-.9c.2-.3.4-.2.7-.1l1.8.9c.2.1.4.2.5.3.1.2.1.9-.1 1.6z"/></svg>
+                María Elena Canali
+              </a>
+              <a href="#" data-wsp="Hola, quiero más información sobre ${dev.name}." data-wsp-agent="paula">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 00-8.6 15L2 22l5.2-1.4A10 10 0 1012 2zm5.7 14.3c-.2.7-1.4 1.3-2 1.4-.5.1-1.1.1-1.8-.1-.4-.1-1-.3-1.7-.6-3-1.3-4.9-4.3-5.1-4.5-.1-.2-1.2-1.6-1.2-3 0-1.4.7-2.1 1-2.4.3-.3.6-.3.8-.3h.6c.2 0 .4 0 .6.5.2.5.8 1.9.8 2 .1.2.1.3 0 .5-.1.2-.2.3-.3.5l-.5.5c-.2.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.2 1.4 2.5 1.5.3.1.4.1.6-.1l.8-.9c.2-.3.4-.2.7-.1l1.8.9c.2.1.4.2.5.3.1.2.1.9-.1 1.6z"/></svg>
+                Paula
+              </a>
+            </div>
+          </div>
+          `}
           <ul class="dev-sidebar__list">
             <li><span>Lotes</span><strong>${dev.lots}</strong></li>
             <li><span>Superficie</span><strong>${dev.surface}</strong></li>
@@ -289,6 +337,7 @@ function renderDevelopmentDetail(){
 
   applyPlaceholderBackgrounds(root);
   initWhatsappLinks();
+  initWhatsappPicker();
   initRevealAnimations();
   initMasterplanLightbox(root);
   initLandBankMap(dev);
@@ -420,7 +469,9 @@ function initContactForm(){
     const mensaje = data.get("mensaje") || "";
 
     const text = `Hola, soy ${nombre} ${apellido}.%0AMe interesa: ${producto}.%0AMensaje: ${mensaje}`;
-    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${text}`, "_blank");
+    const paulaProducts = ["Inversiones - Pool de Rentas", "Macrolotes"];
+    const number = paulaProducts.includes(producto) ? WHATSAPP_PAULA : WHATSAPP_NUMBER;
+    window.open(`https://wa.me/${number}?text=${text}`, "_blank");
 
     if(msg){
       msg.textContent = "¡Gracias! Te vamos a contactar por WhatsApp a la brevedad.";

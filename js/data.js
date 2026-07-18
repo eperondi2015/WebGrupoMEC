@@ -116,7 +116,7 @@ const DEVELOPMENTS = [
     shortDescription: "Tu lugar en el campo, cerca de todo.",
     description: "Hay lugares que invitan a bajar el ritmo y empezar a proyectar una vida más tranquila. Parada Robles III combina naturaleza, amplitud y excelente conectividad, ofreciendo el espacio ideal para construir la casa que siempre imaginaste. A minutos de Capilla del Señor y con excelente acceso por Ruta 6.",
     image: "images/desarrollos/parada-robles-portada.jpg",
-    images: ["images/desarrollos/parada-robles-portada.jpg", "ph-5", "ph-6", "ph-1", "ph-2", "ph-3"],
+    images: ["images/desarrollos/parada-robles-portada.jpg"],
     features: [
       "Barrio abierto, sin expensas",
       "Lotes desde 1.500 m²",
@@ -189,7 +189,7 @@ const DEVELOPMENTS = [
     shortDescription: "Viví el campo, todos los días.",
     description: "El Campo – Fincas Exclusivas es un barrio privado ubicado en Los Cardales, diseñado para quienes buscan naturaleza, tranquilidad y amplios espacios, en un entorno de gran categoría y excelente conectividad.",
     image: "images/desarrollos/el-campo-fincas-portada.jpg",
-    images: ["images/desarrollos/el-campo-fincas-portada.jpg", "ph-4", "ph-3", "ph-5"],
+    images: ["images/desarrollos/el-campo-fincas-portada.jpg", "images/desarrollos/el-campo-fincas-real-1.jpg", "images/desarrollos/el-campo-fincas-real-2.jpg", "images/desarrollos/el-campo-fincas-real-3.jpg", "images/desarrollos/el-campo-fincas-real-4.jpg", "images/desarrollos/el-campo-fincas-real-5.jpg"],
     features: [
       "Barrio privado",
       "Lotes desde 1.300 m²",
@@ -213,7 +213,7 @@ const DEVELOPMENTS = [
     shortDescription: "Viví cada día frente al agua.",
     description: "El Naudir Aguas Privadas es un barrio náutico pensado para quienes buscan combinar naturaleza, confort y calidad de vida. Con amplios espejos de agua y un entorno exclusivo, ofrece el escenario ideal para vivir, disfrutar y realizar una inversión de gran valor.",
     image: "images/desarrollos/el-naudir-portada.jpg",
-    images: ["images/desarrollos/el-naudir-portada.jpg", "ph-4", "ph-6", "ph-3"],
+    images: ["images/desarrollos/el-naudir-portada.jpg", "images/desarrollos/el-naudir-real-1.jpg", "images/desarrollos/el-naudir-real-2.jpg", "images/desarrollos/el-naudir-real-3.jpg", "images/desarrollos/el-naudir-real-4.jpg"],
     features: [
       "Barrio náutico",
       "Lotes internos y al agua",
@@ -281,6 +281,7 @@ const DEVELOPMENTS = [
     mapQuery: "Buenos Aires, Argentina",
     hasMasterplan: false,
     hasGallery: false,
+    whatsappOverride: "paula",
     landBankPoints: [
       { name: "Exaltación de la Cruz", detail: "183 hectáreas", lat: -34.3556944, lng: -59.0543333 },
       { name: "Escobar", detail: "100 hectáreas", lat: -34.3040278, lng: -58.8002778 },
@@ -315,6 +316,8 @@ const DEVELOPMENTS = [
     surface: "A confirmar",
     quickFacts: ["Pool de rentas", "Four Points by Sheraton", "Cataratas del Iguazú"],
     mapQuery: "Puerto Iguazú, Misiones, Argentina",
+    hasGallery: false,
+    whatsappOverride: "paula",
     hasMasterplan: false,
   }
 ];

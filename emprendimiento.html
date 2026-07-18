@@ -33,7 +33,19 @@
       <a class="header__social" href="#" data-instagram aria-label="Instagram de Grupo MEC">
         <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.6"/><circle cx="17.3" cy="6.7" r="1.1" fill="currentColor"/></svg>
       </a>
-      <a class="btn btn--ghost" href="#" data-wsp>Consultar por WhatsApp</a>
+      <div class="wsp-picker-wrap">
+        <button class="btn btn--ghost" type="button" data-wsp-toggle>Consultar por WhatsApp</button>
+        <div class="wsp-picker">
+          <a href="#" data-wsp data-wsp-agent="maria">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 00-8.6 15L2 22l5.2-1.4A10 10 0 1012 2zm5.7 14.3c-.2.7-1.4 1.3-2 1.4-.5.1-1.1.1-1.8-.1-.4-.1-1-.3-1.7-.6-3-1.3-4.9-4.3-5.1-4.5-.1-.2-1.2-1.6-1.2-3 0-1.4.7-2.1 1-2.4.3-.3.6-.3.8-.3h.6c.2 0 .4 0 .6.5.2.5.8 1.9.8 2 .1.2.1.3 0 .5-.1.2-.2.3-.3.5l-.5.5c-.2.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.2 1.4 2.5 1.5.3.1.4.1.6-.1l.8-.9c.2-.3.4-.2.7-.1l1.8.9c.2.1.4.2.5.3.1.2.1.9-.1 1.6z"/></svg>
+            María Elena Canali
+          </a>
+          <a href="#" data-wsp data-wsp-agent="paula">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 00-8.6 15L2 22l5.2-1.4A10 10 0 1012 2zm5.7 14.3c-.2.7-1.4 1.3-2 1.4-.5.1-1.1.1-1.8-.1-.4-.1-1-.3-1.7-.6-3-1.3-4.9-4.3-5.1-4.5-.1-.2-1.2-1.6-1.2-3 0-1.4.7-2.1 1-2.4.3-.3.6-.3.8-.3h.6c.2 0 .4 0 .6.5.2.5.8 1.9.8 2 .1.2.1.3 0 .5-.1.2-.2.3-.3.5l-.5.5c-.2.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.2 1.4 2.5 1.5.3.1.4.1.6-.1l.8-.9c.2-.3.4-.2.7-.1l1.8.9c.2.1.4.2.5.3.1.2.1.9-.1 1.6z"/></svg>
+            Paula
+          </a>
+        </div>
+      </div>
     </div>
 
     <button class="menu-toggle" aria-label="Abrir menú">
@@ -47,7 +59,8 @@
     <a href="index.html#beneficios">Por qué elegirnos</a>
     <a href="index.html#nosotros">Nosotros</a>
     <a href="index.html#contacto">Contacto</a>
-    <a class="btn btn--primary" href="#" data-wsp>Consultar por WhatsApp</a>
+    <a class="btn btn--primary" href="#" data-wsp data-wsp-agent="maria">Hablar con María</a>
+    <a class="btn btn--primary" href="#" data-wsp data-wsp-agent="paula">Hablar con Paula</a>
     <span class="nav-mobile__license"><span>María Elena Canali</span><span>Martillera y Corredor Público</span><span>Matrícula CMCPCI7048</span></span>
   </nav>
 </header>
@@ -70,7 +83,10 @@
         <a href="#" data-instagram aria-label="Instagram">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.6"/></svg>
         </a>
-        <a href="#" data-wsp aria-label="WhatsApp">
+        <a href="#" data-wsp data-wsp-agent="maria" aria-label="WhatsApp de María">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 00-8.6 15L2 22l5.2-1.4A10 10 0 1012 2z"/></svg>
+        </a>
+        <a href="#" data-wsp data-wsp-agent="paula" aria-label="WhatsApp de Paula">
           <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 00-8.6 15L2 22l5.2-1.4A10 10 0 1012 2z"/></svg>
         </a>
       </div>
@@ -85,7 +101,8 @@
     </div>
     <div class="footer__col">
       <h4>Contacto</h4>
-      <a href="#" data-wsp>WhatsApp</a>
+      <a href="#" data-wsp data-wsp-agent="maria">WhatsApp María</a>
+      <a href="#" data-wsp data-wsp-agent="paula">WhatsApp Paula</a>
       <a href="#" data-instagram>Instagram</a>
       <a href="mailto:info@grupomecpropiedades.com.ar">info@grupomecpropiedades.com.ar</a>
       <span style="display:block;font-size:.92rem;color:rgba(255,255,255,.65)">Av. Costanera Rocha 1900, Of. 5, Zárate</span>
@@ -97,10 +114,20 @@
   </div>
 </footer>
 
-<div class="wsp-widget">
-  <a class="wsp-float" href="#" data-wsp aria-label="Hablar por WhatsApp">
+<div class="wsp-widget wsp-picker-wrap">
+  <div class="wsp-picker wsp-picker--float">
+    <a href="#" data-wsp data-wsp-agent="maria">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 00-8.6 15L2 22l5.2-1.4A10 10 0 1012 2zm5.7 14.3c-.2.7-1.4 1.3-2 1.4-.5.1-1.1.1-1.8-.1-.4-.1-1-.3-1.7-.6-3-1.3-4.9-4.3-5.1-4.5-.1-.2-1.2-1.6-1.2-3 0-1.4.7-2.1 1-2.4.3-.3.6-.3.8-.3h.6c.2 0 .4 0 .6.5.2.5.8 1.9.8 2 .1.2.1.3 0 .5-.1.2-.2.3-.3.5l-.5.5c-.2.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.2 1.4 2.5 1.5.3.1.4.1.6-.1l.8-.9c.2-.3.4-.2.7-.1l1.8.9c.2.1.4.2.5.3.1.2.1.9-.1 1.6z"/></svg>
+      María Elena Canali
+    </a>
+    <a href="#" data-wsp data-wsp-agent="paula">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 00-8.6 15L2 22l5.2-1.4A10 10 0 1012 2zm5.7 14.3c-.2.7-1.4 1.3-2 1.4-.5.1-1.1.1-1.8-.1-.4-.1-1-.3-1.7-.6-3-1.3-4.9-4.3-5.1-4.5-.1-.2-1.2-1.6-1.2-3 0-1.4.7-2.1 1-2.4.3-.3.6-.3.8-.3h.6c.2 0 .4 0 .6.5.2.5.8 1.9.8 2 .1.2.1.3 0 .5-.1.2-.2.3-.3.5l-.5.5c-.2.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.2 1.4 2.5 1.5.3.1.4.1.6-.1l.8-.9c.2-.3.4-.2.7-.1l1.8.9c.2.1.4.2.5.3.1.2.1.9-.1 1.6z"/></svg>
+      Paula
+    </a>
+  </div>
+  <button class="wsp-float" type="button" data-wsp-toggle aria-label="Hablar por WhatsApp">
     <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 00-8.6 15L2 22l5.2-1.4A10 10 0 1012 2zm5.7 14.3c-.2.7-1.4 1.3-2 1.4-.5.1-1.1.1-1.8-.1-.4-.1-1-.3-1.7-.6-3-1.3-4.9-4.3-5.1-4.5-.1-.2-1.2-1.6-1.2-3 0-1.4.7-2.1 1-2.4.3-.3.6-.3.8-.3h.6c.2 0 .4 0 .6.5.2.5.8 1.9.8 2 .1.2.1.3 0 .5-.1.2-.2.3-.3.5l-.5.5c-.2.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.2 1.4 2.5 1.5.3.1.4.1.6-.1l.8-.9c.2-.3.4-.2.7-.1l1.8.9c.2.1.4.2.5.3.1.2.1.9-.1 1.6z"/></svg>
-  </a>
+  </button>
 </div>
 
 <script src="js/vendor/leaflet/leaflet.js"></script>
